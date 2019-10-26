@@ -1,38 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00ACC1">
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:src="@mipmap/ic_launcher"/>
-    <LinearLayout
+    android:background="#00ACC1"
+    android:clickable="false">
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="2"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher"
+        android:contentDescription="@string/picture"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
         <ImageView
             android:id="@+id/check_dot_1"
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:src="@drawable/white_pen"/>
+            android:src="@drawable/white_pen"
+            android:contentDescription="@string/picture"/>
         <ImageView
             android:id="@+id/check_dot_2"
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:src="@drawable/white_pen"/>
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/white_pen"
+            android:contentDescription="@string/picture"/>
         <ImageView
             android:id="@+id/check_dot_3"
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:src="@drawable/white_pen"/>
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/white_pen"
+            android:contentDescription="@string/picture"/>
         <ImageView
             android:id="@+id/check_dot_4"
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:src="@drawable/white_pen"/>
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/white_pen"
+            android:contentDescription="@string/picture"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <Button
+            android:id="@+id/check_num_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/null_background"
+            android:text="@string/one"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            style="?buttonBarButtonStyle"/>
+        <Button
+            android:id="@+id/check_num_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/null_background"
+            android:text="@string/two"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            style="?buttonBarButtonStyle"/>
+        <Button
+            android:id="@+id/check_num_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/null_background"
+            android:text="@string/three"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            style="?buttonBarButtonStyle"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <Button
+            android:id="@+id/check_num_4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/null_background"
+            android:text="@string/four"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            style="?buttonBarButtonStyle"/>
+        <Button
+            android:id="@+id/check_num_5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/null_background"
+            android:text="@string/five"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            style="?buttonBarButtonStyle"/>
+        <Button
+            android:id="@+id/check_num_6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/null_background"
+            android:text="@string/six"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            style="?buttonBarButtonStyle"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <Button
+            android:id="@+id/check_num_7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/null_background"
+            android:text="@string/seven"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            style="?buttonBarButtonStyle"/>
+        <Button
+            android:id="@+id/check_num_8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/null_background"
+            android:text="@string/eight"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            style="?buttonBarButtonStyle"/>
+        <Button
+            android:id="@+id/check_num_9"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/null_background"
+            android:text="@string/nine"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            style="?buttonBarButtonStyle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <Button
+            android:id="@+id/check_tips"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/null_background"
+            android:text="@string/tips"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            style="?buttonBarButtonStyle"/>
+        <Button
+            android:id="@+id/check_num_0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/null_background"
+            android:text="@string/zero"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            style="?buttonBarButtonStyle"/>
+        <Button
+            android:id="@+id/check_delete"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/null_background"
+            android:text="@string/delete"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:textAllCaps="false"
+            style="?buttonBarButtonStyle"/>
+    </LinearLayout>
 </LinearLayout>
