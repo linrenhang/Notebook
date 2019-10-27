@@ -144,34 +144,34 @@ public class CheckActivity extends AppCompatActivity implements View.OnClickList
     }
     public void setDot(){
         if(number==0){
-            dot1.setImageResource(R.drawable.white_pen);
-            dot2.setImageResource(R.drawable.white_pen);
-            dot3.setImageResource(R.drawable.white_pen);
-            dot4.setImageResource(R.drawable.white_pen);
+            dot1.setImageResource(R.drawable.pen_white);
+            dot2.setImageResource(R.drawable.pen_white);
+            dot3.setImageResource(R.drawable.pen_white);
+            dot4.setImageResource(R.drawable.pen_white);
         }
         if(number==1){
-            dot1.setImageResource(R.drawable.green_pen);
-            dot2.setImageResource(R.drawable.white_pen);
-            dot3.setImageResource(R.drawable.white_pen);
-            dot4.setImageResource(R.drawable.white_pen);
+            dot1.setImageResource(R.drawable.pen_green);
+            dot2.setImageResource(R.drawable.pen_white);
+            dot3.setImageResource(R.drawable.pen_white);
+            dot4.setImageResource(R.drawable.pen_white);
         }
         if(number==2){
-            dot1.setImageResource(R.drawable.green_pen);
-            dot2.setImageResource(R.drawable.green_pen);
-            dot3.setImageResource(R.drawable.white_pen);
-            dot4.setImageResource(R.drawable.white_pen);
+            dot1.setImageResource(R.drawable.pen_green);
+            dot2.setImageResource(R.drawable.pen_green);
+            dot3.setImageResource(R.drawable.pen_white);
+            dot4.setImageResource(R.drawable.pen_white);
         }
         if(number==3){
-            dot1.setImageResource(R.drawable.green_pen);
-            dot2.setImageResource(R.drawable.green_pen);
-            dot3.setImageResource(R.drawable.green_pen);
-            dot4.setImageResource(R.drawable.white_pen);
+            dot1.setImageResource(R.drawable.pen_green);
+            dot2.setImageResource(R.drawable.pen_green);
+            dot3.setImageResource(R.drawable.pen_green);
+            dot4.setImageResource(R.drawable.pen_white);
         }
         if(number==4){
-            dot1.setImageResource(R.drawable.green_pen);
-            dot2.setImageResource(R.drawable.green_pen);
-            dot3.setImageResource(R.drawable.green_pen);
-            dot4.setImageResource(R.drawable.green_pen);
+            dot1.setImageResource(R.drawable.pen_green);
+            dot2.setImageResource(R.drawable.pen_green);
+            dot3.setImageResource(R.drawable.pen_green);
+            dot4.setImageResource(R.drawable.pen_green);
         }
 
 

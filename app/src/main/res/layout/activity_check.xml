@@ -28,28 +28,28 @@
             android:id="@+id/check_dot_1"
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:src="@drawable/white_pen"
+            android:src="@drawable/pen_white"
             android:contentDescription="@string/picture"/>
         <ImageView
             android:id="@+id/check_dot_2"
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/white_pen"
+            android:src="@drawable/pen_white"
             android:contentDescription="@string/picture"/>
         <ImageView
             android:id="@+id/check_dot_3"
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/white_pen"
+            android:src="@drawable/pen_white"
             android:contentDescription="@string/picture"/>
         <ImageView
             android:id="@+id/check_dot_4"
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/white_pen"
+            android:src="@drawable/pen_white"
             android:contentDescription="@string/picture"/>
     </LinearLayout>
     <LinearLayout
