@@ -15,5 +15,7 @@
     <string name="zero">0</string>
     <string name="delete">delete</string>
     <string name="tips">提示</string>
+    <!--main-->
+    <string name="add">新建</string>
 
 </resources>
