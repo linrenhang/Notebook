@@ -21,6 +21,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CheckButtonTextSize" parent="@android:style/Widget.Button">
+        <item name="android:textSize">25sp</item>
+    </style>
+
 
 
 </resources>

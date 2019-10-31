@@ -17,5 +17,7 @@
     <string name="tips">提示</string>
     <!--main-->
     <string name="add">新建</string>
+    <string name="my_book">笔记本(结构化)</string>
+    <string name="normal_book">笔记本</string>
 
 </resources>
