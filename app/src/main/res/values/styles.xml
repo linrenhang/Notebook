@@ -24,6 +24,11 @@
     <style name="CheckButtonTextSize" parent="@android:style/Widget.Button">
         <item name="android:textSize">25sp</item>
     </style>
+    <style name="Theme.AppCompat.Light.Dialog.Alert.Self"
+        parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <!--修改AlertDialog按钮的颜色-->
+        <item name="colorAccent">#00ACC1</item>
+    </style>
 
 
 
