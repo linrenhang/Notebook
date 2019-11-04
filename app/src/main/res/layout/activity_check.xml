@@ -216,7 +216,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/null_background"
-        android:text="@string/eight"
+        android:text="@string/zero"
         android:textColor="#fff"
         style="@style/CheckButtonTextSize"
         app:layout_constraintStart_toEndOf="@+id/check_tips"

@@ -11,6 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SetPassWordActivity" />
+        <activity
+            android:name=".SetsActivity"
+            android:label="设置" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

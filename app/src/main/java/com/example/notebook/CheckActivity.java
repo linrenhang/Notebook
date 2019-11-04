@@ -3,6 +3,7 @@ package com.example.notebook;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +13,7 @@ import android.widget.Toast;
 public class CheckActivity extends AppCompatActivity implements View.OnClickListener {
 
     private boolean isShow=true;
-    private String password="9999";
+    private String password="0000";
     private String inputPassword="";
     private String tips="";
     private Toast toast;
@@ -24,7 +25,10 @@ public class CheckActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(!isShow){
+        SharedPreferences preferences = getSharedPreferences("prefer_data",MODE_PRIVATE);
+        password = preferences.getString("password","0000");
+        tips = preferences.getString("tips","未设置提示");
+        if(!preferences.getBoolean("passwordOpen",false)){
             Intent intent = new Intent(CheckActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -100,14 +104,10 @@ public class CheckActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.check_tips:
                 if(tips.length()>0){
-                    toast = Toast.makeText(CheckActivity.this, null, Toast.LENGTH_SHORT);
-                    toast.setText(tips);
-                    toast.show();
+                    Toast.makeText(CheckActivity.this, tips, Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    toast = Toast.makeText(CheckActivity.this, null, Toast.LENGTH_SHORT);
-                    toast.setText("未设置提示");
-                    toast.show();
+                    Toast.makeText(CheckActivity.this, "未设置提示", Toast.LENGTH_SHORT).show();
                 }
 
                 break;
@@ -133,9 +133,7 @@ public class CheckActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent);
                 finish();
             } else {
-                toast = Toast.makeText(CheckActivity.this, null, Toast.LENGTH_SHORT);
-                toast.setText("密码错误");
-                toast.show();
+                Toast.makeText(CheckActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
                 inputPassword="";
                 number=0;
                 setDot();
