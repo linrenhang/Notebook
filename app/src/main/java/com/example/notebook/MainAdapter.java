@@ -185,8 +185,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
     public void addData(int position) {
-        int
-                 a;
         MainNote mainNote = new MainNote();
         mainNote.setBelongId(Integer.parseInt(showId));
         mainNote.setPosition(position);
