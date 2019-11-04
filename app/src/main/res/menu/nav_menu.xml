@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_frame"
+            android:title="@string/normal_book"
+            android:icon="@drawable/book_white" />
+        <item
+            android:id="@+id/nav_normal"
+            android:title="设置"
+            android:icon="@drawable/set_white" />
+
+    </group>
+</menu>
