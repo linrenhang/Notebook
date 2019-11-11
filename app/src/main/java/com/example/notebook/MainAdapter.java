@@ -1,6 +1,5 @@
 package com.example.notebook;
-import android.content.DialogInterface;
-import android.graphics.Color;
+import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -9,12 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import org.litepal.LitePal;
 import java.util.List;
+
+import static com.example.notebook.MainActivity.alists;
 import static com.example.notebook.MainActivity.preList;
 import static com.example.notebook.MainActivity.showId;
 
@@ -29,7 +29,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         EditText text;
         EditText extendText;
         ImageView enter;
-        ImageView delete;
         ImageView extend;
 
         public ViewHolder(View view){
@@ -38,7 +37,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             text = view.findViewById(R.id.main_content);
             extendText = view.findViewById(R.id.main_extend_text);
             enter= view.findViewById(R.id.main_enter);
-            delete=view.findViewById(R.id.main_delete);
             extend=view.findViewById(R.id.main_extend);
         }
     }
@@ -59,69 +57,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 MainNote mainNote = myMainList.get(position);
                 showId=String.valueOf(mainNote.getId());  //转换showId为当前id
                 preList.add(showId);//转换prelist
+                AList aList = new AList();
+                aList.setList(showId);
+                aList.save();
+                for (int i = 0; i < preList.size(); i++) {
+                    Log.d("MainActivity", preList.get(i));}
                 myMainList= LitePal.where("belongId==?",showId).order("position").find(MainNote.class);//转换List数据为当前showId
                 notifyDataSetChanged();//提醒recycle转换
-            }
-        });
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int position = holder.getAdapterPosition();
-                MainNote mainNote = myMainList.get(position);
-                List<MainNote> tList = LitePal.where("belongId==?",String.valueOf(mainNote.getId())).find(MainNote.class);
-                if(tList.size()>0){
-                    final String delete = "删除";
-                    final EditText inputServer = new EditText(v.getContext());
-                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                    builder.setTitle("该笔记有子项,\n请输入\"删除\"进行确认。").setIcon(android.R.drawable.ic_dialog_info).setView(inputServer)
-                            .setNegativeButton("取消", null);
-                    builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            if(inputServer.getText().toString().equals(delete)){
-                                int position = holder.getAdapterPosition();
-                                MainNote mainNote = myMainList.get(position);
-                                LitePal.deleteAll(MainNote.class,"id==?",String.valueOf(mainNote.getId()));
-                                LitePal.deleteAll(MainNote.class,"belongId==?",String.valueOf(mainNote.getId()));
-                                myMainList= LitePal.where("belongId==?",showId).order("position").find(MainNote.class);//转换List数据为当前showId
-                                for(int i =0;i<myMainList.size();i++){
-                                    MainNote mainNote1 =myMainList.get(i);
-                                    mainNote1.setPosition(i);
-                                    mainNote1.save();
-                                }
-                                notifyDataSetChanged();//提醒recycle转换
-                            }
-                        }
-                    });
-                    builder.show();
-                }else{
-                    AlertDialog dialog;
-                    AlertDialog.Builder builder2 = new AlertDialog.Builder(v.getContext(),R.style.Theme_AppCompat_Light_Dialog_Alert_Self);
-                    builder2.setTitle("删除");
-                    builder2.setMessage("确定要删除此条笔记吗?");
-                    builder2.setCancelable(false);
-                    builder2.setPositiveButton("好", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            int position = holder.getAdapterPosition();
-                            MainNote mainNote = myMainList.get(position);
-                            LitePal.deleteAll(MainNote.class,"id==?",String.valueOf(mainNote.getId()));
-                            LitePal.deleteAll(MainNote.class,"belongId==?",String.valueOf(mainNote.getId()));
-                            myMainList= LitePal.where("belongId==?",showId).order("position").find(MainNote.class);//转换List数据为当前showId
-                            for(int i =0;i<myMainList.size();i++){
-                                MainNote mainNote1 =myMainList.get(i);
-                                mainNote1.setPosition(i);
-                                mainNote1.save();
-                            }
-                            notifyDataSetChanged();//提醒recycle转换
-                        }
-                    });
-                    builder2.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) { }
-                    });
-                    dialog = builder2.create();
-                    dialog.show();
-                }
             }
         });
         holder.extend.setOnClickListener(new View.OnClickListener() {
@@ -131,9 +73,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 MainNote mainNote = myMainList.get(position);
                 if(holder.extendText.getVisibility()==View.GONE){
                     holder.extendText.setVisibility(View.VISIBLE);
+                    mainNote.setShow(true);
                 }else{
                     holder.extendText.setVisibility(View.GONE);
+                    mainNote.setShow(false);
                 }
+                mainNote.save();
             }
         });
 
@@ -145,6 +90,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             MainNote mainNote = myMainList.get(position);
             holder.text.setText(mainNote.getText());
             holder.extendText.setText(mainNote.getExtendText());
+            if(mainNote.isShow()){
+                holder.extendText.setVisibility(View.VISIBLE);
+            }else{
+                holder.extendText.setVisibility(View.GONE);
+            }
         }
         holder.text.addTextChangedListener(new TextWatcher() {
             @Override
@@ -172,7 +122,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 MainNote mainNote = myMainList.get(position);
                 mainNote.setExtendText(holder.extendText.getText().toString());
                 mainNote.updateAll("id == ?",String.valueOf(mainNote.getId()));
-                Log.d("MainAdapter","chnag");
             }
         });
         holder.setIsRecyclable(false);
@@ -183,7 +132,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public int getItemCount() {
         return myMainList.size();
     }
-
     public void addData(int position) {
         MainNote mainNote = new MainNote();
         mainNote.setBelongId(Integer.parseInt(showId));
@@ -194,15 +142,72 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
     public void backData(){
         if(preList.size()>1){
+            LitePal.deleteAll(AList.class,"list==?",preList.get(preList.size()-1));
             preList.remove(preList.get(preList.size()-1));
             showId = preList.get(preList.size()-1);
             myMainList= LitePal.where("belongId==?",showId).order("position").find(MainNote.class);
             notifyDataSetChanged();
+            for (int i = 0; i < preList.size(); i++) {
+                Log.d("MainActivity", preList.get(i));}
         }
     }
+    public void deleteEmpty(){
+        List<MainNote> testList=LitePal.findAll(MainNote.class);
+        for(int i=0;i<testList.size();i++){
+            MainNote mainNote = testList.get(i);
+            String a = mainNote.getText();
+            String b = mainNote.getExtendText();
+            if((a==null)&&(b==null)){
+                LitePal.deleteAll(MainNote.class,"id==?",String.valueOf(mainNote.getId()));
+                LitePal.deleteAll(MainNote.class,"belongId==?",String.valueOf(mainNote.getId()));
+            }else if(a==null){
+                if(b.length()==0){
+                    LitePal.deleteAll(MainNote.class,"id==?",String.valueOf(mainNote.getId()));
+                    LitePal.deleteAll(MainNote.class,"belongId==?",String.valueOf(mainNote.getId()));
+                }
+            }else if(b==null){
+                if(a.length()==0){
+                    LitePal.deleteAll(MainNote.class,"id==?",String.valueOf(mainNote.getId()));
+                    LitePal.deleteAll(MainNote.class,"belongId==?",String.valueOf(mainNote.getId()));
+                }
+            }else if((a.length()==0)&&(b.length()==0)){
+                LitePal.deleteAll(MainNote.class,"id==?",String.valueOf(mainNote.getId()));
+                LitePal.deleteAll(MainNote.class,"belongId==?",String.valueOf(mainNote.getId()));
+            }
+            myMainList= LitePal.where("belongId==?",showId).order("position").find(MainNote.class);
+            notifyDataSetChanged();
+        }
+    }
+    public void changeShowId(Context context){
+        if(showId.equals("-1")){
+            showId="-2";
+            AList aList = new AList();
+            aList.setList("-2");
+            aList.updateAll("list==?","-1");
+            preList.remove(0);
+            preList.add(0,"-2");
+            Toast.makeText(context,"切换成功",Toast.LENGTH_SHORT).show();
+            for (int i = 0; i < preList.size(); i++) {
+                Log.d("MainActivity", preList.get(i));}
+        }else if(showId.equals("-2")){
+            showId="-1";
+            AList aList = new AList();
+            aList.setList("-1");
+            aList.updateAll("list==?","-2");
+            preList.remove(0);
+            preList.add(0,"-1");
+                for (int i = 0; i < preList.size(); i++) {
+                    Log.d("MainActivity", preList.get(i));}
 
+        }else{
+            Toast.makeText(context,"请在主界面切换",Toast.LENGTH_SHORT).show();
+        }
+        myMainList= LitePal.where("belongId==?",showId).order("position").find(MainNote.class);
+        notifyDataSetChanged();
+    }
 
     public void onItemMove(int fromPosition, int toPosition) {
+
         notifyItemMoved(fromPosition, toPosition);
         MainNote pre = myMainList.remove(fromPosition);
         myMainList.add(toPosition,pre);
@@ -212,7 +217,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             mainNote.setPosition(i);
             mainNote.save();
         }
-        Log.d("MainAdapter"," form:"+fromPosition+" to:"+toPosition);
     }
 }
 

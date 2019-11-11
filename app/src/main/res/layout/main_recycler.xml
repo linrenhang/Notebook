@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
     android:focusable="true"
     android:focusableInTouchMode="true">
     <androidx.cardview.widget.CardView
@@ -13,7 +14,7 @@
         android:layout_marginStart="3dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="1dp"
         app:cardCornerRadius="4dp">
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,31 +27,24 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:longClickable="false"
-                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
                 android:background="@drawable/null_background"
                 android:textCursorDrawable="@drawable/edit_cursor"
-                android:textSize="15sp"
+                android:textSize="9sp"
+                android:textColor="#B3000000"
                 android:minLines="2"
                 android:maxLines="2" />
-
-            <ImageView
-                android:id="@+id/main_delete"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:background="@drawable/button_click_blue"
-                android:src="@drawable/delete_black" />
             <ImageView
                 android:id="@+id/main_extend"
                 android:layout_width="30dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:background="@drawable/button_click_blue"
                 android:src="@drawable/down_crow"/>
             <ImageView
                 android:id="@+id/main_enter"
                 android:layout_width="30dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:background="@drawable/button_click_blue"
                 android:src="@drawable/crow_black"/>
@@ -61,18 +55,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginTop="2dp"
         android:layout_marginBottom="3dp"
         app:cardCornerRadius="4dp">
         <EditText
             android:id="@+id/main_extend_text"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
+            android:paddingTop="5dp"
+            android:lineSpacingMultiplier="1.2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#B3000000"
             android:background="@drawable/null_background"
             android:textCursorDrawable="@drawable/edit_cursor"
-            android:textSize="15sp"
+            android:textSize="9sp"
             android:minLines="2"
             android:visibility="gone"/>
     </androidx.cardview.widget.CardView>

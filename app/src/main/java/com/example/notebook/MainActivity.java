@@ -9,17 +9,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import org.litepal.LitePal;
 import java.util.ArrayList;
@@ -29,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static String showId;
     public static List<String> preList = new ArrayList<>();
+    public static List<AList> alists = new ArrayList<>();
     private DrawerLayout drawerLayout;
     private MainAdapter adapter;
     private RecyclerView recyclerView;
@@ -40,8 +36,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        showId="-1";
-        preList.add(showId);
+        alists = LitePal.findAll(AList.class);
+        if(alists.size()>0){
+            preList.clear();
+            for(int i=0;i<alists.size();i++){
+                preList.add(i,alists.get(i).getList());
+            }
+            showId=preList.get(preList.size()-1);
+            for (int i = 0; i < preList.size(); i++) {
+                Log.d("MainActivity", "main1"+preList.get(i));}
+        }else{
+            AList aList = new AList();
+            preList.add(0,"-1");
+            aList.setList("-1");
+            aList.save();
+            Log.d("MainActivity",aList.getList());
+            showId="-1";
+            for (int i = 0; i < preList.size(); i++) {
+                Log.d("MainActivity", "main2"+preList.get(i));}
+        }
         //toolbar
         Toolbar toolbar = findViewById(R.id.main_tool_bar);
         setSupportActionBar(toolbar);
@@ -104,6 +117,22 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.back:
                 adapter.backData();
+                break;
+            case R.id.delete:
+                adapter.deleteEmpty();
+                break;
+            case R.id.trans:
+                if(showId.equals("-2")){
+                    finish();
+                    Intent intent = new Intent(MainActivity.this,CheckActivity.class);
+                    startActivity(intent);
+                    try{
+                        Thread.sleep(1000);
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+                adapter.changeShowId(MainActivity.this);
                 break;
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);

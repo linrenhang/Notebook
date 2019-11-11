@@ -11,4 +11,12 @@
         android:title="@string/add"
         android:icon="@drawable/add_white"
         app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/delete"
+        android:title="删除空笔记"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/trans"
+        android:title="切换到另一个笔记"
+        app:showAsAction="never"/>
 </menu>

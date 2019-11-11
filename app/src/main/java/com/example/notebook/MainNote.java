@@ -4,7 +4,8 @@ import org.litepal.crud.LitePalSupport;
 
 public class MainNote extends LitePalSupport {
     private int id;//int为21亿
-    private int position;
+    private int position;//在笔记中的位置
+    private boolean show;
     private String text=null;
     private String extendText=null;
     private int belongId;
@@ -31,6 +32,14 @@ public class MainNote extends LitePalSupport {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public boolean isShow() {
+        return show;
+    }
+
+    public void setShow(boolean show) {
+        this.show = show;
     }
 
     public String getExtendText() {

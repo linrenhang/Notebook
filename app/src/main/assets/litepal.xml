@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <litepal>
     <dbname value="NoteBook"></dbname>
-    <version value="3"></version>
+    <version value="5"></version>
 
     <list>
         <mapping class = "com.example.notebook.MainNote"/>
+    </list>
+    <list>
+        <mapping class = "com.example.notebook.AList"/>
     </list>
 </litepal>

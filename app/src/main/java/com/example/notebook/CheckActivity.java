@@ -12,11 +12,9 @@ import android.widget.Toast;
 
 public class CheckActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private boolean isShow=true;
     private String password="0000";
     private String inputPassword="";
     private String tips="";
-    private Toast toast;
     private int number=0;
     private ImageView dot1;
     private ImageView dot2;
