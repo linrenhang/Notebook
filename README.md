@@ -1,2 +1,2 @@
-# test
-a test application
+# note
+a Notebook application
